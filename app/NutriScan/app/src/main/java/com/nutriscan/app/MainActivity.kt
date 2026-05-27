@@ -26,7 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.nutriscan.app.ui.screens.HomeScreen
+import com.nutriscan.app.ui.screens.HistoryScreen
 import com.nutriscan.app.ui.screens.ProductDetailScreen
 import com.nutriscan.app.ui.screens.ScannerScreen
 import com.nutriscan.app.ui.screens.SearchScreen
@@ -67,27 +67,30 @@ class MainActivity : ComponentActivity() {
 fun NutriScanApp() {
     val navController = rememberNavController()
     val screens = listOf(Screen.Home, Screen.Search, Screen.Scan)
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                screens.forEach { screen ->
-                    NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            // Esconde a bottom bar na tela de detalhe do produto
+            if (currentDestination?.route != Screen.ProductDetail.route) {
+                NavigationBar {
+                    screens.forEach { screen ->
+                        NavigationBarItem(
+                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                            onClick = {
+                                navController.navigate(screen.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = { Icon(screen.icon, contentDescription = screen.label) },
-                        label = { Text(screen.label) }
-                    )
+                            },
+                            icon = { Icon(screen.icon, contentDescription = screen.label) },
+                            label = { Text(screen.label) }
+                        )
+                    }
                 }
             }
         }
@@ -98,7 +101,11 @@ fun NutriScanApp() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HistoryScreen(
+                    onProductClick = { barcode ->
+                        navController.navigate(Screen.ProductDetail.createRoute(barcode))
+                    }
+                )
             }
             // Tela de busca: ao clicar num produto, navega para detalhe pelo barcode
             composable(Screen.Search.route) {

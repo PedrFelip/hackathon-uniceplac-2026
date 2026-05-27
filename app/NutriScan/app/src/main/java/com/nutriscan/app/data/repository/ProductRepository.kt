@@ -33,7 +33,14 @@ class ProductRepository {
         return try {
             val response: ProductResponse = api.getProductByBarcode(barcode)
             if (response.status == 1 && response.product != null) {
-                Result.success(response.product)
+                val product = response.product
+                // Garante que o code nunca seja nulo — usa o barcode da requisição como fallback
+                if (product.code.isNullOrBlank()) {
+                    val fixedProduct = product.copy(code = barcode)
+                    Result.success(fixedProduct)
+                } else {
+                    Result.success(product)
+                }
             } else {
                 Result.failure(Exception("Produto não encontrado"))
             }
