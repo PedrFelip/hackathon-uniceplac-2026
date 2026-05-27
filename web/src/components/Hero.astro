@@ -24,6 +24,17 @@ import Button from './Button.astro';
         <Button href="#solucao" variant="primary">Ver como funciona</Button>
         <Button href="#problema" variant="ghost">Entender o problema</Button>
       </div>
+      <a href="/downloads/nutriscan.apk" download class="hero-download-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Baixe o app agora</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
     </div>
     <div class="hero-visual">
       <div class="hero-screenshot">
@@ -112,6 +123,37 @@ import Button from './Button.astro';
     flex-wrap: wrap;
   }
 
+  .hero-download-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--green-700), var(--green-800));
+    color: var(--cream);
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(58, 83, 44, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+  }
+
+  .hero-download-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(58, 83, 44, 0.4);
+  }
+
+  .hero-download-badge svg {
+    flex-shrink: 0;
+  }
+
+  .hero-download-badge span {
+    white-space: nowrap;
+  }
+
   .hero-visual {
     position: relative;
     display: flex;
@@ -123,7 +165,7 @@ import Button from './Button.astro';
   .hero-screenshot {
     position: relative;
     z-index: 2;
-    border-radius: 32px;
+    border-radius: 28px;
     overflow: hidden;
     box-shadow:
       0 4px 6px rgba(0, 0, 0, 0.05),
@@ -135,7 +177,7 @@ import Button from './Button.astro';
     display: block;
     width: 280px;
     height: auto;
-    border-radius: 27px;
+    border-radius: 24px;
   }
 
   .hero-scroll-hint {
@@ -175,14 +217,15 @@ import Button from './Button.astro';
     .hero-inner {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: 48px;
-      padding: 110px 20px 60px;
+      gap: 40px;
+      padding: 100px 20px 48px;
     }
 
     .hero-subtitle {
       margin-left: auto;
       margin-right: auto;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
     .hide-mobile {
@@ -193,56 +236,66 @@ import Button from './Button.astro';
       justify-content: center;
     }
 
+    .hero-download-badge {
+      justify-content: center;
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .hero-visual {
       order: -1;
     }
 
     .hero-screenshot img {
-      width: 240px;
+      width: 220px;
+    }
+
+    .hero-screenshot {
+      border-radius: 24px;
+      border-width: 5px;
     }
 
     .hero-scroll-hint {
-      bottom: 20px;
+      bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 7vw, 2.8rem);
     }
   }
 
   @media (max-width: 480px) {
     .hero-inner {
-      padding: 100px 16px 48px;
-      gap: 32px;
+      padding: 90px 16px 36px;
+      gap: 28px;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 8vw, 2.6rem);
+      font-size: clamp(1.75rem, 7vw, 2.2rem);
     }
 
     .hero-subtitle {
-      font-size: 0.95rem;
-      line-height: 1.7;
+      font-size: 0.9rem;
+      line-height: 1.65;
     }
 
     .hero-eyebrow {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
     }
 
     .hero-cta-group {
       flex-direction: column;
       width: 100%;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .hero-screenshot img {
-      width: 200px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .hero-inner {
-      padding: 90px 12px 40px;
-    }
-
-    .hero h1 {
-      font-size: 1.75rem;
+    .hero-download-badge {
+      max-width: 100%;
+      font-size: 0.88rem;
+      padding: 12px 20px;
+      border-radius: 12px;
     }
 
     .hero-screenshot img {
@@ -250,8 +303,8 @@ import Button from './Button.astro';
     }
 
     .hero-screenshot {
-      border-radius: 24px;
-      border-width: 5px;
+      border-radius: 20px;
+      border-width: 4px;
     }
   }
 </style>

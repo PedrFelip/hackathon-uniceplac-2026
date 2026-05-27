@@ -165,62 +165,22 @@ import Container from './Container.astro';
     }
 
     .problema h2 {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
+      font-size: clamp(1.6rem, 5vw, 2rem);
     }
 
     .problema-grid {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 28px;
     }
 
     .problema-text .lead {
-      font-size: 1.05rem;
-    }
-
-    .problema-stats {
-      flex-direction: row;
-      gap: 12px;
-    }
-
-    .stat-card {
-      flex: 1;
-      padding: 18px 16px;
-    }
-
-    .stat-number {
-      font-size: 1.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-    }
-
-    .problema-divider {
-      margin-top: 60px;
-    }
-
-    .problema-divider svg {
-      height: 60px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .problema {
-      padding: 64px 0 48px;
-    }
-
-    .problema h2 {
-      font-size: clamp(1.6rem, 6vw, 2rem);
-      margin-bottom: 24px;
-    }
-
-    .problema-text .lead {
-      font-size: 0.95rem;
-      line-height: 1.75;
+      font-size: 1rem;
     }
 
     .problema-text p {
       font-size: 0.9rem;
+      line-height: 1.7;
     }
 
     .problema-stats {
@@ -229,18 +189,19 @@ import Container from './Container.astro';
     }
 
     .stat-card {
+      padding: 16px 18px;
       flex-direction: row;
       align-items: center;
-      gap: 12px;
-      padding: 16px 18px;
+      gap: 14px;
     }
 
     .stat-number {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      white-space: nowrap;
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
     .problema-divider {
