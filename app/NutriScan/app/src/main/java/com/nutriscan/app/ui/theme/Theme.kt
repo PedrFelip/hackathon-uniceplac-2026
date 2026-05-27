@@ -1,54 +1,78 @@
 package com.nutriscan.app.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Green400,
+    onPrimary = Green950,
+    primaryContainer = Green800,
+    onPrimaryContainer = Green100,
+    secondary = Green300,
+    onSecondary = Green900,
+    secondaryContainer = Green700,
+    onSecondaryContainer = Green100,
+    tertiary = Green500,
+    onTertiary = Cream,
+    tertiaryContainer = Green800,
+    onTertiaryContainer = Green100,
+    background = SurfaceDark,
+    onBackground = Green50,
+    surface = SurfaceDark,
+    onSurface = Green50,
+    surfaceVariant = SurfaceDarkVariant,
+    onSurfaceVariant = Green200,
+    surfaceTint = Green400,
+    inverseSurface = Green50,
+    inverseOnSurface = Green900,
+    outline = Green600,
+    outlineVariant = Green700,
+    error = Color(0xFFBA1A1A),
+    onError = Cream,
+    errorContainer = Color(0xFFFFDAD6),
+    onErrorContainer = Color(0xFF410002),
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Green700,
+    onPrimary = Cream,
+    primaryContainer = Green100,
+    onPrimaryContainer = Green900,
+    secondary = Green600,
+    onSecondary = Cream,
+    secondaryContainer = Green100,
+    onSecondaryContainer = Green900,
+    tertiary = Green700,
+    onTertiary = Cream,
+    tertiaryContainer = Green100,
+    onTertiaryContainer = Green900,
+    background = Cream,
+    onBackground = Green900,
+    surface = Cream,
+    onSurface = Green900,
+    surfaceVariant = Green50,
+    onSurfaceVariant = Green700,
+    surfaceTint = Green700,
+    inverseSurface = Green900,
+    inverseOnSurface = Green50,
+    outline = Green400,
+    outlineVariant = Green200,
+    error = Color(0xFFBA1A1A),
+    onError = Cream,
+    errorContainer = Color(0xFFFFDAD6),
+    onErrorContainer = Color(0xFF410002),
 )
 
 @Composable
 fun NutriScanTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,

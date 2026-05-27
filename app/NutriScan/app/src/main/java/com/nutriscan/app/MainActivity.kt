@@ -10,8 +10,10 @@ import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -74,7 +76,9 @@ fun NutriScanApp() {
         bottomBar = {
             // Esconde a bottom bar na tela de detalhe do produto
             if (currentDestination?.route != Screen.ProductDetail.route) {
-                NavigationBar {
+                NavigationBar(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                ) {
                     screens.forEach { screen ->
                         NavigationBarItem(
                             selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
@@ -88,7 +92,14 @@ fun NutriScanApp() {
                                 }
                             },
                             icon = { Icon(screen.icon, contentDescription = screen.label) },
-                            label = { Text(screen.label) }
+                            label = { Text(screen.label) },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.primary,
+                                selectedTextColor = MaterialTheme.colorScheme.primary,
+                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
+                            )
                         )
                     }
                 }
