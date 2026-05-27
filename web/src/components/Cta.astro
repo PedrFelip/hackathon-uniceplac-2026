@@ -6,7 +6,7 @@ import Button from './Button.astro';
 
 <section class="cta" id="cta">
   <div class="cta-bg">
-    <BackgroundEffects variant="rings" opacity="0.2" />
+    <BackgroundEffects variant="rings" opacity="0.35" />
   </div>
   <Container>
     <div class="cta-inner reveal">
@@ -15,7 +15,7 @@ import Button from './Button.astro';
           <path
             d="M60 8C36 36 20 56 28 80C32 92 44 100 60 112C76 100 88 92 92 80C100 56 84 36 60 8Z"
             fill="var(--green-800)"
-            opacity="0.15"></path>
+            opacity="0.30"></path>
         </svg>
       </div>
       <h2>Comece a escanear<br /><em>hoje mesmo</em></h2>
@@ -85,6 +85,7 @@ import Button from './Button.astro';
     color: var(--cream);
     margin: 0 0 20px;
     position: relative;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
   }
 
   .cta h2 em {
@@ -94,15 +95,17 @@ import Button from './Button.astro';
 
   .cta p {
     font-size: 1.1rem;
-    color: rgba(248, 245, 239, 0.6);
+    color: rgba(248, 245, 239, 0.75);
     margin: 0 0 40px;
     line-height: 1.8;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
   }
 
   .cta-note {
     margin-top: 16px !important;
     font-size: 0.85rem !important;
-    color: rgba(248, 245, 239, 0.35) !important;
+    color: rgba(248, 245, 239, 0.5) !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -119,6 +122,7 @@ import Button from './Button.astro';
       font-size: 0.92rem;
       margin-bottom: 28px;
       line-height: 1.7;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
     }
 
     .cta-note {
