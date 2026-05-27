@@ -1,0 +1,96 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'ghost' | 'accent';
+  size?: 'default' | 'large';
+  download?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'default',
+  download = false,
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  download={download || undefined}
+  class={`btn btn-${variant} ${size === 'large' ? 'btn-large' : ''} ${className}`}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: none;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+
+  .btn-primary {
+    background: var(--green-700);
+    color: var(--cream);
+  }
+
+  .btn-primary:hover {
+    background: var(--green-800);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(58, 83, 44, 0.25);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--green-700);
+    border: 1.5px solid var(--green-300);
+  }
+
+  .btn-ghost:hover {
+    background: var(--green-50);
+    border-color: var(--green-500);
+  }
+
+  .btn-accent {
+    background: var(--green-400);
+    color: var(--green-950);
+    font-weight: 700;
+  }
+
+  .btn-accent:hover {
+    background: var(--green-300);
+    box-shadow: 0 8px 40px rgba(166, 188, 142, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-large {
+    padding: 18px 48px;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 480px) {
+    .btn {
+      padding: 14px 24px;
+      font-size: 0.9rem;
+    }
+
+    .btn-large {
+      padding: 16px 32px;
+      font-size: 0.95rem;
+    }
+  }
+</style>

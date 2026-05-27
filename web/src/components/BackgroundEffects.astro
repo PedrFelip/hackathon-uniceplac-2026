@@ -1,0 +1,173 @@
+---
+interface Props {
+  variant?: 'grain' | 'blobs' | 'rings';
+  opacity?: number;
+}
+
+const { variant = 'grain', opacity = 0.35 } = Astro.props;
+---
+
+{variant === 'grain' && <div class="grain" style={`opacity: ${opacity}`} />}
+
+{
+  variant === 'blobs' && (
+    <>
+      <div class="grain" style={`opacity: ${opacity}`} />
+      <div class="blob blob-1" />
+      <div class="blob blob-2" />
+      <div class="blob blob-3" />
+    </>
+  )
+}
+
+{
+  variant === 'rings' && (
+    <>
+      <div class="grain" style={`opacity: ${opacity}`} />
+      <div class="glow glow-1" />
+      <div class="glow glow-2" />
+      <div class="ring ring-1" />
+      <div class="ring ring-2" />
+      <div class="ring ring-3" />
+    </>
+  )
+}
+
+<style>
+  .grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+  }
+
+  .blob-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--green-200), transparent 70%);
+    top: -10%;
+    right: -5%;
+    animation: gentleFloat 12s ease-in-out infinite;
+  }
+
+  .blob-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--green-300), transparent 70%);
+    bottom: 10%;
+    left: -5%;
+    animation: gentleFloat 10s ease-in-out infinite reverse;
+  }
+
+  .blob-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--green-100), transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation: gentleFloat 14s ease-in-out infinite;
+  }
+
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .glow-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(130, 160, 102, 0.15),
+      transparent 70%
+    );
+    top: -20%;
+    right: -10%;
+    animation: glowPulse 8s ease-in-out infinite;
+  }
+
+  .glow-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(96, 133, 72, 0.12),
+      transparent 70%
+    );
+    bottom: -15%;
+    left: -5%;
+    animation: glowPulse 10s ease-in-out infinite reverse;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .ring-1 {
+    width: 700px;
+    height: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1.5px solid rgba(166, 188, 142, 0.12);
+    box-shadow: 0 0 60px rgba(130, 160, 102, 0.06);
+    animation: ringExpand 10s ease-in-out infinite;
+  }
+
+  .ring-2 {
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(166, 188, 142, 0.08);
+    box-shadow: 0 0 40px rgba(130, 160, 102, 0.04);
+    animation: ringExpand 10s ease-in-out infinite 2s;
+  }
+
+  .ring-3 {
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(166, 188, 142, 0.06);
+    animation: ringExpand 10s ease-in-out infinite 4s;
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes ringExpand {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+  }
+</style>
