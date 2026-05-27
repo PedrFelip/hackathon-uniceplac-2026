@@ -2,7 +2,7 @@ name: Build APK & Publish to Web
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
     paths:
       - 'app/NutriScan/**'
       - '.github/workflows/build-apk.yml'
