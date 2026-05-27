@@ -1,0 +1,299 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import Container from './Container.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Escaneie',
+    description:
+      'Aponte a câmera do celular para o código de barras de qualquer produto alimentício.',
+    icon: '<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="4" width="32" height="40" rx="4" stroke="var(--green-600)" stroke-width="2"/><rect x="18" y="6" width="12" height="2" rx="1" fill="var(--green-400)"/><rect x="14" y="16" width="20" height="2" rx="1" fill="var(--green-300)"/><rect x="14" y="22" width="16" height="2" rx="1" fill="var(--green-200)"/><rect x="14" y="28" width="18" height="2" rx="1" fill="var(--green-300)"/><rect x="14" y="34" width="12" height="2" rx="1" fill="var(--green-200)"/></svg>',
+  },
+  {
+    number: '02',
+    title: 'Analise',
+    description:
+      'Receba a nota Nutri-Score, tabela nutricional completa e alertas para diabéticos.',
+    icon: '<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="var(--green-600)" stroke-width="2"/><path d="M16 24L22 30L32 18" stroke="var(--green-500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  },
+  {
+    number: '03',
+    title: 'Escolha melhor',
+    description:
+      'Veja recomendações de produtos mais saudáveis na mesma categoria. Decida com consciência.',
+    icon: '<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 4C14 14 8 22 12 32C14 36 18 40 24 44C30 40 34 36 36 32C40 22 34 14 24 4Z" stroke="var(--green-600)" stroke-width="2" fill="var(--green-100)"/><path d="M24 16C20 20 18 24 20 28C21 30 22 31 24 32C26 31 27 30 28 28C30 24 28 20 24 16Z" fill="var(--green-400)" opacity="0.5"/></svg>',
+  },
+];
+
+const features = [
+  'Alertas para diabéticos',
+  'Base de dados com milhões de produtos',
+  'Funciona offline',
+  'Histórico de scans',
+];
+---
+
+<section class="solucao" id="solucao">
+  <Container>
+    <SectionLabel text="A Solução" />
+    <h2 class="reveal reveal-delay-1">
+      Um scanner.<br />
+      <em>Respostas instantâneas.</em>
+    </h2>
+    <p class="solucao-intro reveal reveal-delay-2">
+      Aponte a câmera para o código de barras. Em segundos, o NutriScan mostra a
+      nota nutricional, alertas de risco e sugestões mais saudáveis.
+    </p>
+
+    <div class="steps">
+      {
+        steps.map((step, i) => (
+          <>
+            {i > 0 && (
+              <div class="step-connector">
+                <svg
+                  width="100%"
+                  height="2"
+                  viewBox="0 0 100 2"
+                  preserveAspectRatio="none"
+                >
+                  <line
+                    x1="0"
+                    y1="1"
+                    x2="100"
+                    y2="1"
+                    stroke="var(--green-200)"
+                    stroke-width="1"
+                    stroke-dasharray="6 4"
+                  />
+                </svg>
+              </div>
+            )}
+            <div class={`step reveal reveal-delay-${i + 1}`}>
+              <div class="step-icon" set:html={step.icon} />
+              <div class="step-number">{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+
+    <div class="features reveal reveal-delay-3">
+      {
+        features.map((feature) => (
+          <div class="feature">
+            <div class="feature-dot" />
+            <span>{feature}</span>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .solucao {
+    background: var(--green-50);
+    padding: 100px 0 120px;
+    position: relative;
+  }
+
+  .solucao h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--green-900);
+    margin: 0 0 16px;
+  }
+
+  .solucao h2 em {
+    font-style: italic;
+    color: var(--green-600);
+  }
+
+  .solucao-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 0 60px;
+    line-height: 1.8;
+  }
+
+  .steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 60px;
+  }
+
+  .step {
+    flex: 1;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .step-icon {
+    margin: 0 auto 16px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 24px;
+    border: 1px solid var(--green-100);
+    box-shadow: 0 4px 16px rgba(39, 55, 31, 0.06);
+  }
+
+  .step-number {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--green-400);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .step h3 {
+    font-size: 1.25rem;
+    color: var(--green-800);
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .step-connector {
+    flex: 0 0 60px;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    opacity: 0.5;
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    justify-content: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--green-200);
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--green-700);
+    font-weight: 500;
+  }
+
+  .feature-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-400);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .step {
+      padding: 0 12px;
+    }
+
+    .step-connector {
+      flex: 0 0 40px;
+    }
+
+    .step-icon {
+      width: 68px;
+      height: 68px;
+    }
+
+    .step-icon :global(svg) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .solucao {
+      padding: 80px 0 100px;
+    }
+
+    .solucao-intro {
+      margin-bottom: 48px;
+      font-size: 1rem;
+    }
+
+    .steps {
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step {
+      max-width: 360px;
+      padding: 24px 0;
+    }
+
+    .step-connector {
+      flex: 0 0 auto;
+      width: 30px;
+      height: 2px;
+      padding: 0;
+      transform: rotate(90deg);
+    }
+
+    .step-icon {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .solucao {
+      padding: 64px 0 80px;
+    }
+
+    .solucao h2 {
+      font-size: clamp(1.6rem, 6vw, 2rem);
+    }
+
+    .solucao-intro {
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    .step {
+      padding: 20px 0;
+    }
+
+    .step h3 {
+      font-size: 1.1rem;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      padding: 0 12px;
+    }
+
+    .features {
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding-top: 28px;
+    }
+
+    .feature {
+      font-size: 0.9rem;
+    }
+  }
+</style>

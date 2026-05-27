@@ -1,0 +1,254 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import Container from './Container.astro';
+---
+
+<section class="problema" id="problema">
+  <Container>
+    <SectionLabel text="O Problema" />
+    <h2 class="reveal reveal-delay-1">
+      Você sabe o que tem<br />na embalagem daquilo que come?
+    </h2>
+    <div class="problema-grid">
+      <div class="problema-text reveal reveal-delay-2">
+        <p class="lead">
+          Toda vez que entramos no supermercado, tomamos centenas de decisões em
+          minutos. Rótulos confusos, letras miúdas, nomes científicos que
+          ninguém entende.
+        </p>
+        <p>
+          Para quem vive com <strong>diabetes</strong>, cada escolha errada pode
+          significar uma crise. Para o resto de nós, é uma decisão cega —
+          confiamos na embalagem bonita, na promessa na frente, e raramente
+          lemos o que está atrás.
+        </p>
+        <p>
+          O Brasil tem mais de <strong>16 milhões de diabéticos</strong>.
+          Milhões de pessoas que precisam, diariamente, decodificar rótulos para
+          se protegerem. Ninguém deveria precisar de um diploma em nutrição para
+          fazer compras.
+        </p>
+      </div>
+      <div class="problema-stats reveal reveal-delay-3">
+        <div class="stat-card">
+          <span class="stat-number">16M+</span>
+          <span class="stat-label">diabéticos no Brasil</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">70%</span>
+          <span class="stat-label">não leem rótulos<br />alimentares</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">1 em 3</span>
+          <span class="stat-label">alimentos contêm<br />açúcar oculto</span>
+        </div>
+      </div>
+    </div>
+  </Container>
+  <div class="problema-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
+      <path
+        d="M0 120L48 108C96 96 192 72 288 66C384 60 480 72 576 78C672 84 768 84 864 78C960 72 1056 60 1152 60C1248 60 1344 72 1392 78L1440 84V120H0Z"
+        fill="var(--green-50)"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .problema {
+    position: relative;
+    padding: 120px 0 80px;
+  }
+
+  .problema h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--green-900);
+    margin: 0 0 48px;
+    max-width: 600px;
+  }
+
+  .problema-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .problema-text .lead {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--green-800);
+    margin: 0 0 20px;
+  }
+
+  .problema-text p {
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+  }
+
+  .problema-text strong {
+    color: var(--green-700);
+    font-weight: 600;
+  }
+
+  .problema-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stat-card {
+    background: white;
+    border: 1px solid var(--green-100);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.35s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--green-300);
+    box-shadow: 0 8px 32px rgba(82, 160, 102, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--green-700);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .problema-divider {
+    position: relative;
+    margin-top: 80px;
+    line-height: 0;
+  }
+
+  .problema-divider svg {
+    width: 100%;
+    height: 80px;
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    .problema-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .problema-stats {
+      gap: 16px;
+    }
+
+    .stat-card {
+      padding: 20px 22px;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .problema {
+      padding: 80px 0 60px;
+    }
+
+    .problema h2 {
+      margin-bottom: 32px;
+    }
+
+    .problema-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .problema-text .lead {
+      font-size: 1.05rem;
+    }
+
+    .problema-stats {
+      flex-direction: row;
+      gap: 12px;
+    }
+
+    .stat-card {
+      flex: 1;
+      padding: 18px 16px;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+    }
+
+    .problema-divider {
+      margin-top: 60px;
+    }
+
+    .problema-divider svg {
+      height: 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .problema {
+      padding: 64px 0 48px;
+    }
+
+    .problema h2 {
+      font-size: clamp(1.6rem, 6vw, 2rem);
+      margin-bottom: 24px;
+    }
+
+    .problema-text .lead {
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .problema-text p {
+      font-size: 0.9rem;
+    }
+
+    .problema-stats {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stat-card {
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+
+    .stat-number {
+      font-size: 1.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+    }
+
+    .problema-divider {
+      margin-top: 48px;
+    }
+
+    .problema-divider svg {
+      height: 40px;
+    }
+  }
+</style>
